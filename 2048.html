@@ -1,0 +1,262 @@
+<html>
+<head>
+  <style>
+     td {text-align:center;height:75px;width:75px;}
+	 tr {width:75px;height:75px;}
+  </style>
+</head>
+<body style = "text-align:center;">
+
+
+
+<div id = "showtable"></div>
+
+
+</body>
+<script type="text/javascript">
+
+ld = 4
+
+function restart()
+{
+	for (var i=0;i<ld*ld;i++)
+	{
+		ones[i] = "0";
+	}
+	if(Math.random() > 0.5){
+	getnew(2);
+	getnew(4);
+}
+else{
+	getnew(2);
+	getnew(2);
+}
+
+}
+function getzeros()
+{
+	zeros = 0
+	for (var i=0;i<ld*ld;i++)
+	{
+		if(ones[i]=="0"){
+			zeros++;
+		}
+	}
+	return zeros
+}
+function getnew(k)
+{
+	zeros  = getzeros();
+	index = Math.floor(Math.random()*zeros)+1;
+	for (var i=0;i<ld*ld;i++)
+	{
+		if (ones[i] == "0")index--;
+		if(index == 0){
+			ones[i] = k;
+			break;
+			
+		}
+	}
+}
+
+function left()
+{
+	for(var i=0;i<ld;i++)
+	{
+		index = 0;
+		t_1 = 0;
+		for (var j=0;j<ld;j++)
+		{
+			if(ones[i*ld+j] != 0){		
+				if(ones[i*ld+j] == t_1){
+					ones[i*ld+index-1] = 2*t_1;
+					t_1 = 0;
+				}
+				else{
+					ones[i*ld+index] = ones[i*ld+j];
+					t_1 = ones[i*ld+j];
+					index++;
+				}
+			
+			}
+		}
+		for(var j=index;j<ld;j++)
+			ones[i*ld+j] ="0";	
+	}
+}
+function right()
+{
+	for(var i=0;i<ld;i++)
+	{
+		index = ld-1;
+		t_1 = 0;
+		for (var j=ld-1;j>=0;j--)
+		{
+			if(ones[i*ld+j] != 0){		
+				if(ones[i*ld+j] == t_1){
+					ones[i*ld+index+1] = 2*t_1;
+					t_1 = 0;
+				}
+				else{
+					ones[i*ld+index] = ones[i*ld+j];
+					t_1 = ones[i*ld+j];
+					index--;
+				}
+			
+			}
+		}
+		for(var j=index;j>=0;j--)
+			ones[i*ld+j] ="0";	
+	}
+}
+function up()
+{
+	for(var j=0;j<ld;j++)
+	{
+		index = 0;
+		t_1 = 0;
+		for (var i=0;i<ld;i++)
+		{
+			if(ones[i*ld+j] != 0){		
+				if(ones[i*ld+j] == t_1){
+					ones[(index-1)*ld+j] = 2*t_1;
+					t_1 = 0;
+				}
+				else{
+					ones[index*ld+j] = ones[i*ld+j];
+					t_1 = ones[i*ld+j];
+					index++;
+				}
+			
+			}
+		}
+		for(var i=index;i<ld;i++)
+			ones[i*ld+j] ="0";	
+	}
+}
+function down()
+{
+	for(var j=0;j<ld;j++)
+	{
+		index = ld-1;
+		t_1 = 0;
+		for (var i=ld-1;i>=0;i--)
+		{
+			if(ones[i*ld+j] != 0){		
+				if(ones[i*ld+j] == t_1){
+					ones[(index+1)*ld+j] = 2*t_1;
+					t_1 = 0;
+				}
+				else{
+					ones[index*ld+j] = ones[i*ld+j];
+					t_1 = ones[i*ld+j];
+					index--;
+				}
+			
+			}
+		}
+		for(var i=index;i>=0;i--)
+			ones[i*ld+j] ="0";	
+	}
+}
+function output()
+{
+
+	var s = "<table  border=\"8;\" style=\"width:"+ld*100+"px;height:"+ld*100+"px;overflow-x:hidden;overflow-y:hidden;\"   align=\"center\" >";
+	
+	for(var i=0;i<ld;i++)
+	{	
+		s+="<tr>"
+		for (var j=0;j<ld;j++)
+		{
+			if( ones[i*ld+j]!="0")
+			s+="<td>" + ones[i*ld+j]+"</td>"
+			else
+			s+="<td></td>"
+		}
+		s+="</tr>"
+	}
+	s+="</table>"
+	document.getElementById("showtable").innerHTML = s;
+}
+function isover()
+{
+	for(var i=0;i<ld;i++)
+	{
+		if (ones[i] == "2048")return 2;
+	}
+	zeros = getzeros();
+	if (zeros >0)return 0;
+	else{
+		for(var i =0;i<ld*ld;i++){
+			if(i-ld>=0 && i-ld<ld*ld && ones[i-ld] == ones[i])return 0;
+			if(i+ld>=0 && i+ld<ld*ld && ones[i+ld] == ones[i])return 0;
+			if(i-1>=0 && i-1<ld*ld && i%ld != 0 && ones[i-1] == ones[i])return 0;
+			if(i+1>=0 && i+1<ld*ld && i%ld != 3 && ones[i+1] == ones[i])return 0;
+		}
+	}
+	return 1;
+}
+function checkover()
+{
+	IO = isover() ;
+	if(IO == 1)alert("game over ! and Press F2 to restart");
+	if(IO == 2)alert("win !! and you can Press F2 to restart");
+}
+
+function keydown(event){
+
+  var e = event || window.event || arguments.callee.caller.arguments[0];
+			  if(e && e.keyCode==37){ // 按 left
+                left();
+				getnew(2);
+				checkover();
+
+             }
+            if(e && e.keyCode==38){ // 按 up
+                up();
+				getnew(2);
+				checkover();
+
+              }
+            if(e && e.keyCode==39){ // 按 right
+                right();
+				getnew(2);
+				checkover();
+
+             }            
+              if(e && e.keyCode==40){ // 按 down
+                down();
+				getnew(2);
+				checkover();
+
+             }
+			    if(e && e.keyCode==113){ // 按 f2
+                restart();
+
+             }
+			 output();
+			 document.onkeydown=keydown;
+        }
+
+
+
+
+
+var ones = new Array();
+restart();
+
+
+
+output();
+
+
+document.onkeydown=keydown;
+          
+
+
+</script>
+方向键控制
+
+
+</html>
