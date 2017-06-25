@@ -10,7 +10,8 @@
 
 
 <div id = "showtable"></div>
-
+方向键控制
+<div id = "showmsg"></div>
 
 </body>
 <script type="text/javascript">
@@ -24,14 +25,14 @@ function restart()
 		ones[i] = "0";
 	}
 	if(Math.random() > 0.5){
+	getnew(1);
 	getnew(2);
-	getnew(4);
 }
 else{
-	getnew(2);
-	getnew(2);
+	getnew(1);
+	getnew(1);
 }
-
+	document.getElementById("showmsg").innerHTML = "";
 }
 function getzeros()
 {
@@ -71,7 +72,7 @@ function left()
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
 					dox = 1;
-					ones[i*ld+index-1] = 2*t_1;
+					ones[i*ld+index-1] = 1+t_1;
 					t_1 = 0;
 				}
 				else{
@@ -102,7 +103,7 @@ function right()
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
 					dox = 1;
-					ones[i*ld+index+1] = 2*t_1;
+					ones[i*ld+index+1] = 1+t_1;
 					t_1 = 0;
 				}
 				else{
@@ -132,7 +133,7 @@ function up()
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
 					dox = 1;
-					ones[(index-1)*ld+j] = 2*t_1;
+					ones[(index-1)*ld+j] = 1+t_1;
 					t_1 = 0;
 				}
 				else{
@@ -162,7 +163,7 @@ function down()
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
 					dox = 1;
-					ones[(index+1)*ld+j] = 2*t_1;
+					ones[(index+1)*ld+j] = 1+t_1;
 					t_1 = 0;
 				}
 				else{
@@ -191,7 +192,7 @@ function output()
 		for (var j=0;j<ld;j++)
 		{
 			if( ones[i*ld+j]!="0")
-			s+="<td>" + ones[i*ld+j]+"</td>"
+			s+="<td style=\"background-color: #"+colorlist[ones[i*ld+j]] +"; \" >" + Math.pow(2,ones[i*ld+j])+"</td>"
 			else
 			s+="<td></td>"
 		}
@@ -204,7 +205,7 @@ function isover()
 {
 	for(var i=0;i<ld;i++)
 	{
-		if (ones[i] == "2048")return 2;
+		if (ones[i] == "11")return 2;
 	}
 	zeros = getzeros();
 	if (zeros >0)return 0;
@@ -221,8 +222,15 @@ function isover()
 function checkover()
 {
 	IO = isover() ;
-	if(IO == 1)alert("game over ! and Press F2 to restart");
-	if(IO == 2)alert("win !! and you can Press F2 to restart");
+	
+	if(IO == 1){
+	document.getElementById("showmsg").innerHTML = "game over ! and Press F2 to restart";
+
+	}
+	if(IO == 2){
+	document.getElementById("showmsg").innerHTML = "win !! and you can Press F2 to restart";
+
+	}
 }
 
 function keydown(event){
@@ -230,25 +238,26 @@ function keydown(event){
   var e = event || window.event || arguments.callee.caller.arguments[0];
 			  if(e && e.keyCode==37){ // 按 left
                
-				if (left() != 0)getnew(2);
+				if (left() != 0)
+				getnew(1);
 				checkover();
 
              }
             if(e && e.keyCode==38){ // 按 up
                 if(up() != 0)
-				getnew(2);
+				getnew(1);
 				checkover();
 
               }
             if(e && e.keyCode==39){ // 按 right
                 if(right()!=0)
-				getnew(2);
+				getnew(1);
 				checkover();
 
              }            
               if(e && e.keyCode==40){ // 按 down
                 if(down()!=0)
-				getnew(2);
+				getnew(1);
 				checkover();
 
              }
@@ -266,8 +275,8 @@ function keydown(event){
 
 var ones = new Array();
 restart();
-
-
+var colorlist = new Array();
+colorlist = ['FFFFFF','FCFCFC','F0F0F0','E0E0E0','D0D0D0','BEBEBE','ADADAD','9D9D9D','8E8E8E','7B7B7B','6C6C6C','5B5B5B']
 
 output();
 
@@ -277,7 +286,7 @@ document.onkeydown=keydown;
 
 
 </script>
-方向键控制
+
 
 
 </html>
