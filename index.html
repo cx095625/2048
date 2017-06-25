@@ -3,13 +3,21 @@
   <style>
      td {text-align:center;height:75px;width:75px;}
 	 tr {width:75px;height:75px;}
+	 button{width:40px;height:40px;margin-top:5px;}
   </style>
+
 </head>
 <body style = "text-align:center;">
 
 
 
 <div id = "showtable"></div>
+<div id = "btn">
+<button onclick = run("up");>↑</button></br>
+<button onclick = run("left");>←</button>
+<button onclick = run("down");>↓</button>
+<button onclick = run("right");>→</button>
+</div>
 方向键控制
 <div id = "showmsg"></div>
 
@@ -33,6 +41,7 @@ else{
 	getnew(1);
 }
 	document.getElementById("showmsg").innerHTML = "";
+	output();
 }
 function getzeros()
 {
@@ -232,40 +241,61 @@ function checkover()
 
 	}
 }
+function run(direct)
+{
+	switch(direct){
+	
+		case "left":
+			if (left() != 0)
+				getnew(1);
+				checkover();
+			break;
+		case "up":
+			if(up() != 0)
+				getnew(1);
+				checkover();
+			break;
+		case "right":
+			if(right()!=0)
+				getnew(1);
+				checkover();
+			break;
+		case "down":
+			 if(down()!=0)
+				getnew(1);
+				checkover();
+			break;
+		default:
+	
+	}
 
+	output();
+}
 function keydown(event){
 
   var e = event || window.event || arguments.callee.caller.arguments[0];
-			  if(e && e.keyCode==37){ // 按 left
+			 if(e && e.keyCode==37){ // 按 left
                
-				if (left() != 0)
-				getnew(1);
-				checkover();
+				run("left");
 
              }
             if(e && e.keyCode==38){ // 按 up
-                if(up() != 0)
-				getnew(1);
-				checkover();
+                run("up");
 
               }
             if(e && e.keyCode==39){ // 按 right
-                if(right()!=0)
-				getnew(1);
-				checkover();
+                run("right");
 
              }            
-              if(e && e.keyCode==40){ // 按 down
-                if(down()!=0)
-				getnew(1);
-				checkover();
+             if(e && e.keyCode==40){ // 按 down
+				run("down");
 
              }
-			    if(e && e.keyCode==113){ // 按 f2
+			   if(e && e.keyCode==113){ // 按 f2
                 restart();
 
              }
-			 output();
+		
 			 document.onkeydown=keydown;
         }
 
@@ -274,11 +304,11 @@ function keydown(event){
 
 
 var ones = new Array();
-restart();
+
 var colorlist = new Array();
 colorlist = ['FFFFFF','FCFCFC','F0F0F0','E0E0E0','D0D0D0','BEBEBE','ADADAD','9D9D9D','8E8E8E','7B7B7B','6C6C6C','5B5B5B']
 
-output();
+restart();
 
 
 document.onkeydown=keydown;
