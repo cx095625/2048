@@ -61,6 +61,7 @@ function getnew(k)
 
 function left()
 {
+	dox = 0;
 	for(var i=0;i<ld;i++)
 	{
 		index = 0;
@@ -69,10 +70,12 @@ function left()
 		{
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
+					dox = 1;
 					ones[i*ld+index-1] = 2*t_1;
 					t_1 = 0;
 				}
 				else{
+					if (index != j ) dox = 1;
 					ones[i*ld+index] = ones[i*ld+j];
 					t_1 = ones[i*ld+j];
 					index++;
@@ -80,12 +83,16 @@ function left()
 			
 			}
 		}
+
 		for(var j=index;j<ld;j++)
 			ones[i*ld+j] ="0";	
 	}
+	if(dox == 0)return 0;
+	return 1;
 }
 function right()
 {
+	dox = 0;
 	for(var i=0;i<ld;i++)
 	{
 		index = ld-1;
@@ -94,10 +101,12 @@ function right()
 		{
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
+					dox = 1;
 					ones[i*ld+index+1] = 2*t_1;
 					t_1 = 0;
 				}
 				else{
+					if (index != j ) dox = 1;
 					ones[i*ld+index] = ones[i*ld+j];
 					t_1 = ones[i*ld+j];
 					index--;
@@ -108,9 +117,12 @@ function right()
 		for(var j=index;j>=0;j--)
 			ones[i*ld+j] ="0";	
 	}
+	if(dox == 0)return 0;
+	return 1;
 }
 function up()
 {
+	dox = 0;
 	for(var j=0;j<ld;j++)
 	{
 		index = 0;
@@ -119,10 +131,12 @@ function up()
 		{
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
+					dox = 1;
 					ones[(index-1)*ld+j] = 2*t_1;
 					t_1 = 0;
 				}
 				else{
+					if (index != j ) dox = 1;
 					ones[index*ld+j] = ones[i*ld+j];
 					t_1 = ones[i*ld+j];
 					index++;
@@ -133,9 +147,12 @@ function up()
 		for(var i=index;i<ld;i++)
 			ones[i*ld+j] ="0";	
 	}
+	if(dox == 0)return 0;
+	return 1;
 }
 function down()
 {
+	dox = 0;
 	for(var j=0;j<ld;j++)
 	{
 		index = ld-1;
@@ -144,10 +161,12 @@ function down()
 		{
 			if(ones[i*ld+j] != 0){		
 				if(ones[i*ld+j] == t_1){
+					dox = 1;
 					ones[(index+1)*ld+j] = 2*t_1;
 					t_1 = 0;
 				}
 				else{
+					if (index != j ) dox = 1;
 					ones[index*ld+j] = ones[i*ld+j];
 					t_1 = ones[i*ld+j];
 					index--;
@@ -158,6 +177,8 @@ function down()
 		for(var i=index;i>=0;i--)
 			ones[i*ld+j] ="0";	
 	}
+	if(dox == 0)return 0;
+	return 1;
 }
 function output()
 {
@@ -208,25 +229,25 @@ function keydown(event){
 
   var e = event || window.event || arguments.callee.caller.arguments[0];
 			  if(e && e.keyCode==37){ // 按 left
-                left();
-				getnew(2);
+               
+				if (left() != 0)getnew(2);
 				checkover();
 
              }
             if(e && e.keyCode==38){ // 按 up
-                up();
+                if(up() != 0)
 				getnew(2);
 				checkover();
 
               }
             if(e && e.keyCode==39){ // 按 right
-                right();
+                if(right()!=0)
 				getnew(2);
 				checkover();
 
              }            
               if(e && e.keyCode==40){ // 按 down
-                down();
+                if(down()!=0)
 				getnew(2);
 				checkover();
 
