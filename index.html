@@ -4,7 +4,7 @@
   <style>
      td {text-align:center;height:75px;width:75px;}
 	 tr {width:75px;height:75px;}
-	 button{width:40px;height:40px;margin-top:5px;}
+	 button{width:40px;height:30px;margin-top:5px;}
   </style>
 
 </head>
@@ -234,11 +234,11 @@ function checkover()
 	IO = isover() ;
 	
 	if(IO == 1){
-	document.getElementById("showmsg").innerHTML = "game over ! and Press F2 to restart";
+	document.getElementById("showmsg").innerHTML = "game over ! and Press <button onclick = restart();>F2</button> to restart";
 
 	}
 	if(IO == 2){
-	document.getElementById("showmsg").innerHTML = "win !! and you can Press F2 to restart";
+	document.getElementById("showmsg").innerHTML = "win !! and you can Press <button onclick = restart();>F2</button> to restart";
 
 	}
 }
