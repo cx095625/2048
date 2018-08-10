@@ -1,0 +1,269 @@
+/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
+   
+    ========================================================  */
+
+/* CUSTOM STYLE SHEET */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+body {
+    background-color: #000000; /* INITIAL BACKGROUND OF BODY*/
+}
+
+.body-back {
+    background-color: #6A9DE9 !important; /* YOU CAN SET COLOR HERE FOR CHANGING COLOR BACKGROUND*/
+}
+
+.video-counter {
+}
+
+/* GLOBAL  STYLES  */
+
+
+h1, h2, h3, h4, h5, h6 {
+}
+
+.main-color {
+    color: #19CF7F;
+}
+
+a {
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+}
+
+h2 {
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+h3 {
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+h4 {
+    padding: 30px;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+
+.hm-back-color, .abt-back-color, .srvc-back-color, .sb-back-color {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.sub-head {
+    margin: 35px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.divider {
+    width: 200px;
+    height: 4px;
+    background: #19CF7F;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.divider-two {
+    width: 200px;
+    height: 2px;
+    background: #19CF7F;
+    margin: 0 auto;
+}
+
+.margin-botom-50 {
+    margin-bottom: 50px;
+}
+
+/* LEFT MENU / PANEL STYLES  */
+
+.left-panel {
+    position: fixed;
+    display: table;
+    height: 100%;
+    width: 200px;
+    left: -160px;
+    top: 0;
+    background: rgba(119, 63, 19, 0.3);
+    z-index: 999999;
+}
+
+.menu-text {
+    width: 120px;
+    text-align: justify;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.navigatation {
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+    .navigatation a {
+        color: #fff;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+        .navigatation a:hover {
+            color: #19CF7F;
+            cursor: pointer;
+            transition: all linear 0.2s;
+            font-size: 20px; /* DO NOT REMOVE THIS */
+        }
+
+.Icon-trigger {
+    display: table-cell;
+}
+
+    .Icon-trigger span {
+        margin-bottom: 30px;
+        margin-top: 10px;
+        color: #fff;
+        font-size: 40px;
+    }
+
+#social-links a, a:hover {
+    color: #ffffff;
+    display: table;
+    text-decoration: none;
+    font-size: 40px;
+}
+
+.Icon-trigger span:hover {
+    cursor: pointer;
+}
+
+
+
+/* HOME SECTION STYLES */
+
+#home-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#counter-default {
+    margin-top: 80px;
+}
+
+
+
+.bk-blue {
+    background-color: #6E21E2;
+}
+
+.bk-green {
+    background-color: #02FA33;
+}
+
+.bk-red {
+    background-color: #FF0700;
+}
+
+.bk-pink {
+    background-color: #FF00E0;
+}
+
+.medium {
+    height: 5px;
+}
+/* ABOUT SECTION STYLES */
+
+.abt-back-color {
+    background-color: rgba(39, 109, 81, 1);
+}
+
+.progress {
+    margin: 5px;
+}
+
+/* SERVICES SECTION STYLES */
+
+.srvc-back-color {
+    background-color: rgba(10, 50, 102, 0.89);
+}
+
+
+/* SUBSCRIBE SECTION STYLES */
+
+.sb-back-color {
+    background-color: rgba(70, 22, 131, 0.83);
+    padding-bottom: 80px;
+}
+
+.set-sb {
+    vertical-align: middle;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.input-set {
+    height: 50px;
+    color: #19CF7F;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+/* FOOTER SECTION STYLES */
+
+#footer {
+    font-size: 18px;
+    text-align: right;
+    font-weight: normal;
+    padding: 20px;
+}
+
+/* MEDIA QUERIES  */
+
+@media only screen and (max-width: 767px) {
+    html, body {
+        margin-top: -5px;
+    }
+}
+
+@media only screen and (max-width: 240px) {
+    html, body {
+        height: 96%;
+    }
+
+    .container {
+        padding-left: 10px;
+    }
+}
